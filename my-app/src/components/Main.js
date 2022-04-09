@@ -6,7 +6,7 @@ function Main(props) {
 
     const [userName, putUserName] = React.useState('');
     const [userDescription, putUserDescription] = React.useState('');
-    const [userAvatar, changeAvatar] = React.useState();
+    const [userAvatar, changeAvatar] = React.useState('');
     const [cards, putCards] = React.useState([]);
 
     React.useEffect(() => {
@@ -17,9 +17,7 @@ function Main(props) {
                 changeAvatar(data.avatar);
             })
             .catch(error => console.log(error));
-    }, []);
 
-    React.useEffect(() => {
         api.getInitialCards()
             .then(putCards)
             .catch(error => console.log(error));
@@ -44,7 +42,7 @@ function Main(props) {
                 <button type="button" className="profile__add-button" onClick={props.onAddPlace}/>
             </section>
             <section className="elements">
-                {cards ? Array.from(cards).map((card) => {
+                {cards?.map((card) => {
                     return (<Card card={card}
                                   key={card._id}
                                   onCardClick={props.onCardClick}
@@ -52,7 +50,7 @@ function Main(props) {
                                   link={card.link}
                                   likes={card.likes}
                     />)
-                }) : []}
+                })}
             </section>
         </main>
     );
