@@ -36,11 +36,6 @@ function App() {
         putImage(false);
     }
 
-    const handleSubmitForm = (evt) => {
-        evt.preventDefault();
-        closeAllPopups();
-    }
-
     return (
         <div>
             <div className="page">
@@ -50,8 +45,7 @@ function App() {
                 <Footer/>
             </div>
             <PopupWithForm name="edit" title="Редактировать профиль" button="Сохранить" isOpen={isEditProfilePopupOpen}
-                           onEditProfile={handleEditProfileClick} onClose={closeAllPopups}
-                           onSubmitForm={handleSubmitForm}>
+                           onEditProfile={handleEditProfileClick} onClose={closeAllPopups}>
                 <input type="text" name="name" className="popup__input" id="name" minLength="2" maxLength="40"
                        required/>
                 <span id="error-name" className="error"/>
@@ -61,15 +55,14 @@ function App() {
                 <button type="submit" className="popup__save">Сохранить</button>
             </PopupWithForm>
             <PopupWithForm name="edit-avatar" title="Обновить Аватар" button="Сохранить" isOpen={isEditAvatarPopupOpen}
-                           openEditAvatar={handleEditAvatarClick} onClose={closeAllPopups}
-                           onSubmitForm={handleSubmitForm}>
+                           openEditAvatar={handleEditAvatarClick} onClose={closeAllPopups}>
                 <input type="url" name="avatar" className="popup__input" id="avatar" required
                        placeholder="Ссылка на картинку"/>
                 <span id="error-avatar" className="error"/>
                 <button type="submit" className="popup__save">Сохранить</button>
             </PopupWithForm>
             <PopupWithForm name="add" title="Новое место" button="Создать" isOpen={isAddPlacePopupOpen}
-                           openAddPlace={handleAddPlaceClick} onClose={closeAllPopups} onSubmitForm={handleSubmitForm}>
+                           openAddPlace={handleAddPlaceClick} onClose={closeAllPopups}>
                 <input required type="text" name="name" className="popup__input" id="cardName"
                        placeholder="Название" minLength="2" maxLength="30"/>
                 <span id="error-cardName" className="error"/>
