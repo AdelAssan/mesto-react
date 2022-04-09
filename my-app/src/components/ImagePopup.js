@@ -1,17 +1,9 @@
 import React from 'react';
 
 function ImagePopup(props) {
-    React.useEffect(() => {
-        const popups = document.querySelector(`.popup_${props.name} `);
-        if (props.isOpen) {
-            popups.classList.add('popup_opened');
-        } else {
-            popups.classList.remove('popup_opened');
-        }
-    }, [props.isOpen]);
 
     return (
-        <div className={`popup popup_${props.name}`}>
+        <div className={`popup popup_${props.name} ${props.isOpen ? "popup_opened" : ''}`}>
             <figure className="popup__figure">
                 <div className="popup__image-button">
                     <button type="button" className="popup__close" onClick={props.onClose}/>

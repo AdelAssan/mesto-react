@@ -2,17 +2,8 @@ import React from 'react';
 
 function PopupWithForm(props) {
 
-    React.useEffect(() => {
-        const popups = document.querySelector(`.popup_${props.name} `);
-        if (props.isOpen) {
-            popups.classList.add('popup_opened');
-        } else {
-            popups.classList.remove('popup_opened');
-        }
-    }, [props.isOpen]);
-
     return (
-        <div className={`popup popup_${props.name}`}>
+        <div className={`popup popup_${props.name} ${props.isOpen ? "popup_opened" : ''}`}>
             <div className="popup__close-button">
                 <button onClick={props.onClose} type="button" className="popup__close"/>
             </div>
