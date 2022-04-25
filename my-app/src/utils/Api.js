@@ -24,7 +24,11 @@ class Api {
         }).then(this._checkResponse);
     }
 
-    editProfile(name, about) {
+    getAllData() {
+        return Promise.all([this.getProfile(), this.getInitialCards()]);
+    }
+
+    editProfile({name, about}) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: "PATCH",
             headers: this._headers,
@@ -35,7 +39,7 @@ class Api {
         }).then(this._checkResponse);
     }
 
-    addCard(name, link) {
+    addCard({name, link}) {
         return fetch(`${this._baseUrl}/cards`, {
             method: "POST",
             headers: this._headers,
@@ -67,13 +71,21 @@ class Api {
         }).then(this._checkResponse);
     }
 
+    changeLikeCardStatus(card, isLiked) {
+        if (isLiked) {
+            return this.addLike(card);
+        } else {
+            return this.deleteLike(card);
+        }
+    }
+
     changeAvatar(avatar) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: "PATCH",
             headers: this._headers,
-            body: JSON.stringify({
+            body: JSON.stringify(
                 avatar
-            })
+            )
         }).then(this._checkResponse);
     }
 }

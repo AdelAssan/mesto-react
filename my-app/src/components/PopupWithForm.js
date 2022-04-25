@@ -9,14 +9,13 @@ function PopupWithForm(props) {
             </div>
             <div className="popup__container">
                 <h2 className="popup__title">{props.title}</h2>
-                <form name={props.name} className="popup__form">
+                <form name={props.name} className="popup__form" noValidate onSubmit={props.onSubmit}>
                     {props.children}
-                    <button type="submit" className="popup__save">{props.button}</button>
+                    <button type="submit" className="popup__save">{props.loadingInfo ? props.loadingButton: props.button}</button>
                 </form>
             </div>
         </div>
     );
 }
-
 
 export default PopupWithForm;

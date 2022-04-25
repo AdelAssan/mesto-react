@@ -5,6 +5,7 @@
     border-radius: 50%;
     margin-right: 30px;
     z-index: 1;
+    background-position: center;
 }
 
 .profile__photo-edit:hover {
