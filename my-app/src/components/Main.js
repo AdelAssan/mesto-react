@@ -31,9 +31,6 @@ function Main(props) {
                                   onCardClick={props.onCardClick}
                                   onCardLike={props.onCardLike}
                                   onCardDelete={props.onCardDelete}
-                                  name={card.name}
-                                  link={card.link}
-                                  likes={card.likes}
                     />)
                 })}
             </section>
