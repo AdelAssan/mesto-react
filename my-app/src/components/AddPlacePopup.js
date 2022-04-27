@@ -1,13 +1,14 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
+import {defaultKeyMap} from "@testing-library/user-event/dist/keyboard/keyMap";
 
 function AddPlacePopup(props) {
-   // const [name, setName] = React.useState("");
-   // const [link, setLink] = React.useState("");
-    const [errors, setErrors] = React.useState({});
-    const [values, setValues] = React.useState({});
+    const [name, setName] = React.useState("");
+    const [link, setLink] = React.useState("");
+    //const [errors, setErrors] = React.useState({});
+    //const [values, setValues] = React.useState({});
 
-    const handleChange = (evt) => {
+   /* const handleChange = (evt) => {
         const { name, value } = evt.target
         setValues((prev) => ({
             ...prev,
@@ -16,31 +17,26 @@ function AddPlacePopup(props) {
 
         const message = evt.target.validationMessage
         setErrors({...errors, [name] : message});
-    }
+    }*/
 
     function handleSubmit(evt) {
+
         evt.preventDefault();
-        props.onAddPlace(values)
+        props.onAddPlace({name, link})
     }
 
-    /*function handleChangeName(evt) {
+    function handleChangeName(evt) {
         setName(evt.target.value);
-        const name = evt.target.name;
-        const message = evt.target.validationMessage
-        setErrors({...errors, [name] : message});
     }
 
     function handleChangeLink(evt) {
         setLink(evt.target.value);
-        const name = evt.target.name;
-        const message = evt.target.validationMessage
-        setErrors({...errors, [name] : message});
-    }*/
+    }
 
     React.useEffect(() => {
-       // setName("");
-       // setLink("");
-        setValues("");
+        setName("");
+        setLink("");
+       // setValues("");
     }, [props.isOpen]);
 
     return (
@@ -50,11 +46,11 @@ function AddPlacePopup(props) {
                        onSubmit={handleSubmit}
                        loadingInfo={props.loadingInfo}>
             <input required type="text" name="name" className="popup__input" id="cardName"
-                   placeholder="Название" minLength="2" maxLength="30" onChange={handleChange} defaultValue={values.name || ""}/>
-            <span id="error-cardName" className={errors.name ? 'error error_visible' : 'error'}>{errors.name}</span>
+                   placeholder="Название" minLength="2" maxLength="30" onChange={handleChangeName} value={name || ""}/>
+            <span id="error-cardName" className="error"/>
             <input required type="url" name="link" className="popup__input" id="link"
-                   placeholder="Ссылка на картинку" onChange={handleChange} defaultValue={values.link || ""}/>
-            <span id="error-link" className={errors.link ? 'error error_visible' : 'error'}>{errors.link}</span>
+                   placeholder="Ссылка на картинку" onChange={handleChangeLink} value={link || ""}/>
+            <span id="error-link" className="error"/>
         </PopupWithForm>
     )
 }
